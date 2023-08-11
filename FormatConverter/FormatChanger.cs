@@ -11,7 +11,7 @@ namespace WeatherMonitoringAndReportingService.FormatConverter
             this._inputFormatConverter = _inputFormatConverter;
         }
 
-        public void ApplyFormatConverter(string UserInput)
+        public Weather ApplyFormatConverter(string UserInput)
         {
             _inputFormatConverter.ConvertToWeather(UserInput);
         }

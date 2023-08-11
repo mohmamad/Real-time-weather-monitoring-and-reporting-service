@@ -20,7 +20,7 @@ namespace WeatherMonitoringAndReportingService.UpdateBotSittings
             Observers.Remove(bot);
         }
 
-        public void SetSittings(JObject settings)
+        public void SetSettings(JObject settings)
         {
             NotifyAll(settings);
         }
