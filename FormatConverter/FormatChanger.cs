@@ -1,6 +1,4 @@
-﻿
-
-namespace WeatherMonitoringAndReportingService.FormatConverter
+﻿namespace WeatherMonitoringAndReportingService.FormatConverter
 {
     public class FormatChanger
     {

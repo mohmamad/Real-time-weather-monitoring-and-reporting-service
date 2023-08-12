@@ -8,25 +8,25 @@ namespace WeatherMonitoringAndReportingService.UpdateBotSittings
         private double HumidityThreshold { get; set; }
         private string Message { get; set; }
 
-
-
-        public Settings GetSettings()
+        public string GetBotMessage(Weather weather)
         {
-            Settings settings = new Settings();
-            settings.BotName = "RainBot";
-            settings.Message = Message;
-            settings.Enabled = Enabled;
-            settings.Threshold = HumidityThreshold;
-            return settings;
+            if (!Enabled)
+                return null;
+            if (HumidityThreshold < weather.Humidity)
+                return Message;
+            return null;
         }
 
-        public void UpdateBotsSettings(JObject settings)
+
+        public void SetBotConfiguration(JObject Configuration)
         {
-            JObject rainBotSettings = (JObject)settings["RainBot"];
+            JObject rainBotSettings = (JObject)Configuration["RainBot"];
             Enabled = (bool)rainBotSettings["enabled"];
             HumidityThreshold = (double)rainBotSettings["humidityThreshold"];
             Message = (string)rainBotSettings["message"];
 
         }
+
+
     }
 }

@@ -8,19 +8,18 @@ namespace WeatherMonitoringAndReportingService.UpdateBotSittings
         private double TemperatureThreshold { get; set; }
         private string Message { get; set; }
 
-        public Settings GetSettings()
+        public string GetBotMessage(Weather weather)
         {
-            Settings settings = new Settings();
-            settings.BotName = "SunBot";
-            settings.Message = Message;
-            settings.Enabled = Enabled;
-            settings.Threshold = TemperatureThreshold;
-            return settings;
+            if (!Enabled)
+                return null;
+            if (TemperatureThreshold < weather.Temperature)
+                return Message;
+            return null;
         }
 
-        public void UpdateBotsSettings(JObject settings)
+        public void SetBotConfiguration(JObject Configuration)
         {
-            JObject sunBotSettings = (JObject)settings["SunBot"];
+            JObject sunBotSettings = (JObject)Configuration["SunBot"];
             Enabled = (bool)sunBotSettings["enabled"];
             TemperatureThreshold = (double)sunBotSettings["temperatureThreshold"];
             Message = (string)sunBotSettings["message"];

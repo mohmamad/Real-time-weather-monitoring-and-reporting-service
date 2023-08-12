@@ -1,6 +1,4 @@
-﻿
-
-namespace WeatherMonitoringAndReportingService.FormatConverter
+﻿namespace WeatherMonitoringAndReportingService.FormatConverter
 {
     public interface IInputFormatConverter
     {
