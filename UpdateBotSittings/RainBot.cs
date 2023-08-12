@@ -13,6 +13,7 @@ namespace WeatherMonitoringAndReportingService.UpdateBotSittings
         public Settings GetSettings()
         {
             Settings settings = new Settings();
+            settings.BotName = "RainBot";
             settings.Message = Message;
             settings.Enabled = Enabled;
             settings.Threshold = HumidityThreshold;

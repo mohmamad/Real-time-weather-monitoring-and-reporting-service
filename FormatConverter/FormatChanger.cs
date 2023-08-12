@@ -13,7 +13,7 @@ namespace WeatherMonitoringAndReportingService.FormatConverter
 
         public Weather ApplyFormatConverter(string UserInput)
         {
-            _inputFormatConverter.ConvertToWeather(UserInput);
+            return _inputFormatConverter.ConvertToWeather(UserInput);
         }
     }
 }

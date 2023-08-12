@@ -17,6 +17,7 @@ namespace WeatherMonitoringAndReportingService.UpdateBotSittings
         public Settings GetSettings()
         {
             Settings settings = new Settings();
+            settings.BotName = "SnowBot";
             settings.Message = Message;
             settings.Enabled = Enabled;
             settings.Threshold = TemperatureThreshold;

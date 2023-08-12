@@ -8,25 +8,49 @@ internal class Application
 {
     private static void Main(string[] args)
     {
+        List<IBots> bots = new List<IBots>();
         IBots sunBot = new SunBot();
-        IBots snowBot = new SunBot();
-        IBots rainBot = new SunBot();
-        SetBotsConfigurations(sunBot , snowBot , rainBot);
+        IBots snowBot = new SnowBot();
+        IBots rainBot = new RainBot();
+        if(SetBotsConfigurations(sunBot , snowBot , rainBot) != "success")
+        {
+            Console.WriteLine(SetBotsConfigurations(sunBot, snowBot, rainBot) + " please go fix it.");
+            while (SetBotsConfigurations(sunBot, snowBot, rainBot) != "success") ;
+        }
+
+        bots.Add(sunBot);
+        bots.Add(rainBot);
+        bots.Add(snowBot);
         string weatherInput = "";
-
-        FormatChanger formatChanger = new FormatChanger();
-        IInputFormatConverter inputFormat = DetermineInputFormat(weatherInput);
-        if(inputFormat != null)
+        while (weatherInput != "exit")
         {
-            formatChanger.SetInputFormatConverter(inputFormat);
-            Weather weather = formatChanger.ApplyFormatConverter(weatherInput);
+            Console.WriteLine("Enter weather Data: ");
+            weatherInput = Console.ReadLine();
 
+
+            FormatChanger formatChanger = new FormatChanger();
+            IInputFormatConverter inputFormat = DetermineInputFormat(weatherInput);
+
+            if (inputFormat != null)
+            {
+                BotActivation botActivation = new BotActivation();
+
+                formatChanger.SetInputFormatConverter(inputFormat);
+                Weather weather = formatChanger.ApplyFormatConverter(weatherInput);
+
+                List<string> messages = botActivation.ReportMessages(weather, bots);
+
+                foreach (string message in messages)
+                {
+                    Console.WriteLine(message);
+                }
+               
+            }
+            else
+            {
+                Console.WriteLine("not a recognised input format!");
+            }
         }
-        else
-        {
-            Console.WriteLine("not a recognised input format!");
-        }
-            
     }
 
     public static string SetBotsConfigurations(IBots sunBot , IBots snowBot , IBots rainBot )
@@ -40,9 +64,15 @@ internal class Application
         notifyBots.AddObserver(sunBot);
         notifyBots.AddObserver(snowBot);
         notifyBots.AddObserver(rainBot);
-
-        notifyBots.SetSettings(new JObject(File.ReadAllText(botsConfigFilePath)));
-        return "success";
+        try
+        {
+            JObject configJObject = new JObject(JObject.Parse(File.ReadAllText(botsConfigFilePath)));
+            notifyBots.SetSettings(configJObject);
+            return "success";
+        }
+        catch (Exception ex) { return "Configuration File Content Must Be In JSON Format!"; }
+        
+        
     }
 
     public static IInputFormatConverter DetermineInputFormat(string weatherInput)

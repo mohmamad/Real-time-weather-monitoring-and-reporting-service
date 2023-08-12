@@ -4,6 +4,7 @@ namespace WeatherMonitoringAndReportingService
 {
     public class Settings
     {
+        public string BotName { get; set; }
         public bool Enabled { get; set; }
         public double Threshold { get; set; }
         public string Message { get; set; }
