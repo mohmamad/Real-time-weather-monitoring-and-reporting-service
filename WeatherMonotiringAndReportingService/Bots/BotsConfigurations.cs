@@ -4,7 +4,7 @@ namespace WeatherMonitoringAndReportingService.UpdateBotSittings
 {
     public class BotsConfigurations
     {
-        const string BotsSettingsFilePath = "C:\\Users\\GoldenTech\\Desktop\\study\\intern\\C#\\exercise\\WeatherMonotiringAndReportingService\\BotsConfiguration.txt";
+        const string BotsSettingsFilePath = "C:\\Users\\GoldenTech\\Desktop\\study\\intern\\C#\\exercise\\WeatherStation\\WeatherMonotiringAndReportingService\\BotsConfiguration.txt";
         public JObject GetAllSettings()
         {
             string jsonData = File.ReadAllText(BotsSettingsFilePath);

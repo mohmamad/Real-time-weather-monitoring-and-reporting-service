@@ -18,8 +18,8 @@ namespace WeatherMonitoringAndReportingService
             weatherStation.AddObserver(rainBot);
 
             BotsConfigurations botsConfigurations = new BotsConfigurations();
-            string isConfigurationSet = botsConfigurations.SetBotConfigurations(new List<IBots>() { sunBot , snowBot , rainBot});
-            if(isConfigurationSet != "Success!" ) 
+            string isConfigurationSet = botsConfigurations.SetBotConfigurations(new List<IBots>() { sunBot, snowBot, rainBot });
+            if (isConfigurationSet != "Success!")
             {
                 Console.WriteLine(isConfigurationSet);
                 while (true) ;
@@ -33,7 +33,7 @@ namespace WeatherMonitoringAndReportingService
                 InputHandler inputHandler = new InputHandler();
                 weatherInput = Console.ReadLine();
 
-                IInputFormatConverter inputFormatConverter =  inputHandler.DetermaineInputConverter(weatherInput);
+                IInputFormatConverter inputFormatConverter = inputHandler.DetermaineInputConverter(weatherInput);
 
                 if (inputFormatConverter != null)
                 {

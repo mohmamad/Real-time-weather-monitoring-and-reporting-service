@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using WeatherMonitoringAndReportingService.UpdateBotSittings;
+﻿using WeatherMonitoringAndReportingService.UpdateBotSittings;
 
 namespace WeatherMonitoringAndReportingService
 {
