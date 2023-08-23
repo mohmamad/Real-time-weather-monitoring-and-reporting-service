@@ -4,9 +4,9 @@ namespace WeatherMonitoringAndReportingService.UpdateBotSittings
 {
     public class RainBot : IBots
     {
-        private bool Enabled { get; set; }
-        private double HumidityThreshold { get; set; }
-        private string Message { get; set; }
+        public bool Enabled { get; set; }
+        public double HumidityThreshold { get; set; }
+        public string Message { get; set; }
 
         public string GetBotMessage(Weather weather)
         {

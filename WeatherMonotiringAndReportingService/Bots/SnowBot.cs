@@ -4,9 +4,9 @@ namespace WeatherMonitoringAndReportingService.UpdateBotSittings
 {
     public class SnowBot : IBots
     {
-        private bool Enabled { get; set; }
-        private double TemperatureThreshold { get; set; }
-        private string Message { get; set; }
+        public bool Enabled { get; set; }
+        public double TemperatureThreshold { get; set; }
+        public string Message { get; set; }
 
         public string GetBotMessage(Weather weather)
         {
